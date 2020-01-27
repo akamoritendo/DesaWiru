@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/AdministrasiDesa_0.js"></script>
+        <script src="data/Vegetasi_1.js"></script>
+        <script src="data/Hutan_2.js"></script>
+        <script src="data/Sawah_3.js"></script>
+        <script src="data/Perkebunan_4.js"></script>
+        <script src="data/Ladang_5.js"></script>
+        <script src="data/Pemukiman_6.js"></script>
+        <script src="data/Bangunan_7.js"></script>
+        <script src="data/Sungai_8.js"></script>
+        <script src="data/sungai_9.js"></script>
+        <script src="data/BatasDesa_10.js"></script>
+        <script src="data/Jalan_11.js"></script>
+        <script src="data/BatasDusun_12.js"></script>
+        <script src="data/BalaiDesa_13.js"></script>
+        <script src="data/Mushola_14.js"></script>
+        <script src="data/Masjid_15.js"></script>
+        <script src="data/Pendidikan_16.js"></script>
+        <script src="data/Makam_17.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_AdministrasiDesa_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_AdministrasiDesa_0_0() {
+            return {
+                pane: 'pane_AdministrasiDesa_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '10,5,1,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,177,23,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_AdministrasiDesa_0');
+        map.getPane('pane_AdministrasiDesa_0').style.zIndex = 400;
+        map.getPane('pane_AdministrasiDesa_0').style['mix-blend-mode'] = 'normal';
+        var layer_AdministrasiDesa_0 = new L.geoJson(json_AdministrasiDesa_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_AdministrasiDesa_0',
+            layerName: 'layer_AdministrasiDesa_0',
+            pane: 'pane_AdministrasiDesa_0',
+            onEachFeature: pop_AdministrasiDesa_0,
+            style: style_AdministrasiDesa_0_0,
+        });
+        bounds_group.addLayer(layer_AdministrasiDesa_0);
+        map.addLayer(layer_AdministrasiDesa_0);
+        function pop_Vegetasi_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Vegetasi_1_0() {
+            return {
+                pane: 'pane_Vegetasi_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,148,37,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Vegetasi_1');
+        map.getPane('pane_Vegetasi_1').style.zIndex = 401;
+        map.getPane('pane_Vegetasi_1').style['mix-blend-mode'] = 'normal';
+        var layer_Vegetasi_1 = new L.geoJson(json_Vegetasi_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Vegetasi_1',
+            layerName: 'layer_Vegetasi_1',
+            pane: 'pane_Vegetasi_1',
+            onEachFeature: pop_Vegetasi_1,
+            style: style_Vegetasi_1_0,
+        });
+        bounds_group.addLayer(layer_Vegetasi_1);
+        map.addLayer(layer_Vegetasi_1);
+        function pop_Hutan_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Hutan_2_0() {
+            return {
+                pane: 'pane_Hutan_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,170,42,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Hutan_2');
+        map.getPane('pane_Hutan_2').style.zIndex = 402;
+        map.getPane('pane_Hutan_2').style['mix-blend-mode'] = 'normal';
+        var layer_Hutan_2 = new L.geoJson(json_Hutan_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Hutan_2',
+            layerName: 'layer_Hutan_2',
+            pane: 'pane_Hutan_2',
+            onEachFeature: pop_Hutan_2,
+            style: style_Hutan_2_0,
+        });
+        bounds_group.addLayer(layer_Hutan_2);
+        map.addLayer(layer_Hutan_2);
+        function pop_Sawah_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Sawah_3_0() {
+            return {
+                pane: 'pane_Sawah_3',
+                interactive: false,
+            }
+        }
+        function style_Sawah_3_1() {
+            return {
+                pane: 'pane_Sawah_3',
+                opacity: 1,
+                color: 'rgba(15,255,7,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,184,0,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Sawah_3');
+        map.getPane('pane_Sawah_3').style.zIndex = 403;
+        map.getPane('pane_Sawah_3').style['mix-blend-mode'] = 'normal';
+        var layer_Sawah_3 = new L.geoJson.multiStyle(json_Sawah_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Sawah_3',
+            layerName: 'layer_Sawah_3',
+            pane: 'pane_Sawah_3',
+            onEachFeature: pop_Sawah_3,
+            styles: [style_Sawah_3_0,style_Sawah_3_1,]
+        });
+        bounds_group.addLayer(layer_Sawah_3);
+        map.addLayer(layer_Sawah_3);
+        function pop_Perkebunan_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Perkebunan_4_0() {
+            return {
+                pane: 'pane_Perkebunan_4',
+                interactive: false,
+            }
+        }
+        function style_Perkebunan_4_1() {
+            return {
+                pane: 'pane_Perkebunan_4',
+                opacity: 1,
+                color: 'rgba(55,126,184,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,152,83,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Perkebunan_4');
+        map.getPane('pane_Perkebunan_4').style.zIndex = 404;
+        map.getPane('pane_Perkebunan_4').style['mix-blend-mode'] = 'normal';
+        var layer_Perkebunan_4 = new L.geoJson.multiStyle(json_Perkebunan_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Perkebunan_4',
+            layerName: 'layer_Perkebunan_4',
+            pane: 'pane_Perkebunan_4',
+            onEachFeature: pop_Perkebunan_4,
+            styles: [style_Perkebunan_4_0,style_Perkebunan_4_1,]
+        });
+        bounds_group.addLayer(layer_Perkebunan_4);
+        map.addLayer(layer_Perkebunan_4);
+        function pop_Ladang_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        var pattern_Ladang_5_0 = new L.StripePattern({
+            weight: 0.66,
+            spaceWeight: 5.0,
+            color: '#fcd700',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_Ladang_5_0.addTo(map);
+        function style_Ladang_5_0() {
+            return {
+                pane: 'pane_Ladang_5',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_Ladang_5_0,
+                interactive: false,
+            }
+        }
+        function style_Ladang_5_1() {
+            return {
+                pane: 'pane_Ladang_5',
+                opacity: 1,
+                color: 'rgba(254,157,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,215,0,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Ladang_5');
+        map.getPane('pane_Ladang_5').style.zIndex = 405;
+        map.getPane('pane_Ladang_5').style['mix-blend-mode'] = 'normal';
+        var layer_Ladang_5 = new L.geoJson.multiStyle(json_Ladang_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Ladang_5',
+            layerName: 'layer_Ladang_5',
+            pane: 'pane_Ladang_5',
+            onEachFeature: pop_Ladang_5,
+            styles: [style_Ladang_5_0,style_Ladang_5_1,]
+        });
+        bounds_group.addLayer(layer_Ladang_5);
+        map.addLayer(layer_Ladang_5);
+        function pop_Pemukiman_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Pemukiman_6_0() {
+            return {
+                pane: 'pane_Pemukiman_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,240,99,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Pemukiman_6');
+        map.getPane('pane_Pemukiman_6').style.zIndex = 406;
+        map.getPane('pane_Pemukiman_6').style['mix-blend-mode'] = 'normal';
+        var layer_Pemukiman_6 = new L.geoJson(json_Pemukiman_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Pemukiman_6',
+            layerName: 'layer_Pemukiman_6',
+            pane: 'pane_Pemukiman_6',
+            onEachFeature: pop_Pemukiman_6,
+            style: style_Pemukiman_6_0,
+        });
+        bounds_group.addLayer(layer_Pemukiman_6);
+        map.addLayer(layer_Pemukiman_6);
+        function pop_Bangunan_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Bangunan_7_0() {
+            return {
+                pane: 'pane_Bangunan_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(205,130,112,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Bangunan_7');
+        map.getPane('pane_Bangunan_7').style.zIndex = 407;
+        map.getPane('pane_Bangunan_7').style['mix-blend-mode'] = 'normal';
+        var layer_Bangunan_7 = new L.geoJson(json_Bangunan_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Bangunan_7',
+            layerName: 'layer_Bangunan_7',
+            pane: 'pane_Bangunan_7',
+            onEachFeature: pop_Bangunan_7,
+            style: style_Bangunan_7_0,
+        });
+        bounds_group.addLayer(layer_Bangunan_7);
+        map.addLayer(layer_Bangunan_7);
+        function pop_Sungai_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Sungai_8_0() {
+            return {
+                pane: 'pane_Sungai_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,52,255,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Sungai_8');
+        map.getPane('pane_Sungai_8').style.zIndex = 408;
+        map.getPane('pane_Sungai_8').style['mix-blend-mode'] = 'normal';
+        var layer_Sungai_8 = new L.geoJson(json_Sungai_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Sungai_8',
+            layerName: 'layer_Sungai_8',
+            pane: 'pane_Sungai_8',
+            onEachFeature: pop_Sungai_8,
+            style: style_Sungai_8_0,
+        });
+        bounds_group.addLayer(layer_Sungai_8);
+        map.addLayer(layer_Sungai_8);
+        function pop_sungai_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_sungai_9_0() {
+            return {
+                pane: 'pane_sungai_9',
+                opacity: 1,
+                color: 'rgba(0,46,254,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_sungai_9');
+        map.getPane('pane_sungai_9').style.zIndex = 409;
+        map.getPane('pane_sungai_9').style['mix-blend-mode'] = 'normal';
+        var layer_sungai_9 = new L.geoJson(json_sungai_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_sungai_9',
+            layerName: 'layer_sungai_9',
+            pane: 'pane_sungai_9',
+            onEachFeature: pop_sungai_9,
+            style: style_sungai_9_0,
+        });
+        bounds_group.addLayer(layer_sungai_9);
+        map.addLayer(layer_sungai_9);
+        function pop_BatasDesa_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_BatasDesa_10_0() {
+            return {
+                pane: 'pane_BatasDesa_10',
+                opacity: 1,
+                color: 'rgba(60,29,0,1.0)',
+                dashArray: '10,5,1,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,177,23,0.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_BatasDesa_10');
+        map.getPane('pane_BatasDesa_10').style.zIndex = 410;
+        map.getPane('pane_BatasDesa_10').style['mix-blend-mode'] = 'normal';
+        var layer_BatasDesa_10 = new L.geoJson(json_BatasDesa_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_BatasDesa_10',
+            layerName: 'layer_BatasDesa_10',
+            pane: 'pane_BatasDesa_10',
+            onEachFeature: pop_BatasDesa_10,
+            style: style_BatasDesa_10_0,
+        });
+        bounds_group.addLayer(layer_BatasDesa_10);
+        map.addLayer(layer_BatasDesa_10);
+        function pop_Jalan_11(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Jalan_11_0() {
+            return {
+                pane: 'pane_Jalan_11',
+                opacity: 1,
+                color: 'rgba(214,0,3,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Jalan_11');
+        map.getPane('pane_Jalan_11').style.zIndex = 411;
+        map.getPane('pane_Jalan_11').style['mix-blend-mode'] = 'normal';
+        var layer_Jalan_11 = new L.geoJson(json_Jalan_11, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Jalan_11',
+            layerName: 'layer_Jalan_11',
+            pane: 'pane_Jalan_11',
+            onEachFeature: pop_Jalan_11,
+            style: style_Jalan_11_0,
+        });
+        bounds_group.addLayer(layer_Jalan_11);
+        map.addLayer(layer_Jalan_11);
+        function pop_BatasDusun_12(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_BatasDusun_12_0() {
+            return {
+                pane: 'pane_BatasDusun_12',
+                opacity: 1,
+                color: 'rgba(196,137,0,1.0)',
+                dashArray: '10,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_BatasDusun_12');
+        map.getPane('pane_BatasDusun_12').style.zIndex = 412;
+        map.getPane('pane_BatasDusun_12').style['mix-blend-mode'] = 'normal';
+        var layer_BatasDusun_12 = new L.geoJson(json_BatasDusun_12, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_BatasDusun_12',
+            layerName: 'layer_BatasDusun_12',
+            pane: 'pane_BatasDusun_12',
+            onEachFeature: pop_BatasDusun_12,
+            style: style_BatasDusun_12_0,
+        });
+        bounds_group.addLayer(layer_BatasDusun_12);
+        map.addLayer(layer_BatasDusun_12);
+        function pop_BalaiDesa_13(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_BalaiDesa_13_0() {
+            return {
+                pane: 'pane_BalaiDesa_13',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/accommodation_house.svg',
+            iconSize: [19.0, 19.0]
+        }),
+                interactive: false,
+            }
+        }
+        map.createPane('pane_BalaiDesa_13');
+        map.getPane('pane_BalaiDesa_13').style.zIndex = 413;
+        map.getPane('pane_BalaiDesa_13').style['mix-blend-mode'] = 'normal';
+        var layer_BalaiDesa_13 = new L.geoJson(json_BalaiDesa_13, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_BalaiDesa_13',
+            layerName: 'layer_BalaiDesa_13',
+            pane: 'pane_BalaiDesa_13',
+            onEachFeature: pop_BalaiDesa_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_BalaiDesa_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_BalaiDesa_13);
+        map.addLayer(layer_BalaiDesa_13);
+        function pop_Mushola_14(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Mushola_14_0() {
+            return {
+                pane: 'pane_Mushola_14',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/place_of_worship_islamic.svg',
+            iconSize: [19.0, 19.0]
+        }),
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Mushola_14');
+        map.getPane('pane_Mushola_14').style.zIndex = 414;
+        map.getPane('pane_Mushola_14').style['mix-blend-mode'] = 'normal';
+        var layer_Mushola_14 = new L.geoJson(json_Mushola_14, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Mushola_14',
+            layerName: 'layer_Mushola_14',
+            pane: 'pane_Mushola_14',
+            onEachFeature: pop_Mushola_14,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Mushola_14_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Mushola_14);
+        map.addLayer(layer_Mushola_14);
+        function pop_Masjid_15(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Masjid_15_0() {
+            return {
+                pane: 'pane_Masjid_15',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/place_of_worship_islamic3.svg',
+            iconSize: [19.0, 19.0]
+        }),
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Masjid_15');
+        map.getPane('pane_Masjid_15').style.zIndex = 415;
+        map.getPane('pane_Masjid_15').style['mix-blend-mode'] = 'normal';
+        var layer_Masjid_15 = new L.geoJson(json_Masjid_15, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Masjid_15',
+            layerName: 'layer_Masjid_15',
+            pane: 'pane_Masjid_15',
+            onEachFeature: pop_Masjid_15,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Masjid_15_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Masjid_15);
+        map.addLayer(layer_Masjid_15);
+        function pop_Pendidikan_16(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Pendidikan_16_0() {
+            return {
+                pane: 'pane_Pendidikan_16',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/education_university.svg',
+            iconSize: [19.0, 19.0]
+        }),
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Pendidikan_16');
+        map.getPane('pane_Pendidikan_16').style.zIndex = 416;
+        map.getPane('pane_Pendidikan_16').style['mix-blend-mode'] = 'normal';
+        var layer_Pendidikan_16 = new L.geoJson(json_Pendidikan_16, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Pendidikan_16',
+            layerName: 'layer_Pendidikan_16',
+            pane: 'pane_Pendidikan_16',
+            onEachFeature: pop_Pendidikan_16,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Pendidikan_16_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Pendidikan_16);
+        map.addLayer(layer_Pendidikan_16);
+        function pop_Makam_17(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Makam_17_0() {
+            return {
+                pane: 'pane_Makam_17',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/tourist_memorial.svg',
+            iconSize: [19.0, 19.0]
+        }),
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Makam_17');
+        map.getPane('pane_Makam_17').style.zIndex = 417;
+        map.getPane('pane_Makam_17').style['mix-blend-mode'] = 'normal';
+        var layer_Makam_17 = new L.geoJson(json_Makam_17, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Makam_17',
+            layerName: 'layer_Makam_17',
+            pane: 'pane_Makam_17',
+            onEachFeature: pop_Makam_17,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Makam_17_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Makam_17);
+        map.addLayer(layer_Makam_17);
+        var layer_ESRISatelliteArcGISWorld_Imagery_18 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_ESRISatelliteArcGISWorld_Imagery_18;
+        map.addLayer(layer_ESRISatelliteArcGISWorld_Imagery_18);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{"ESRI Satellite (ArcGIS/World_Imagery)": layer_ESRISatelliteArcGISWorld_Imagery_18,'<img src="legend/Makam_17.png" /> Makam': layer_Makam_17,'<img src="legend/Pendidikan_16.png" /> Pendidikan': layer_Pendidikan_16,'<img src="legend/Masjid_15.png" /> Masjid': layer_Masjid_15,'<img src="legend/Mushola_14.png" /> Mushola': layer_Mushola_14,'<img src="legend/BalaiDesa_13.png" /> Balai Desa': layer_BalaiDesa_13,'<img src="legend/BatasDusun_12.png" /> Batas Dusun': layer_BatasDusun_12,'<img src="legend/Jalan_11.png" /> Jalan': layer_Jalan_11,'<img src="legend/BatasDesa_10.png" /> Batas Desa': layer_BatasDesa_10,'<img src="legend/sungai_9.png" /> sungai': layer_sungai_9,'<img src="legend/Sungai_8.png" /> Sungai': layer_Sungai_8,'<img src="legend/Bangunan_7.png" /> Bangunan': layer_Bangunan_7,'<img src="legend/Pemukiman_6.png" /> Pemukiman': layer_Pemukiman_6,'<img src="legend/Ladang_5.png" /> Ladang': layer_Ladang_5,'<img src="legend/Perkebunan_4.png" /> Perkebunan': layer_Perkebunan_4,'<img src="legend/Sawah_3.png" /> Sawah': layer_Sawah_3,'<img src="legend/Hutan_2.png" /> Hutan': layer_Hutan_2,'<img src="legend/Vegetasi_1.png" /> Vegetasi': layer_Vegetasi_1,'<img src="legend/AdministrasiDesa_0.png" /> Administrasi Desa': layer_AdministrasiDesa_0,}).addTo(map);
+        setBounds();
+        resetLabels([layer_AdministrasiDesa_0,layer_BatasDesa_10]);
+        map.on("zoomend", function(){
+            resetLabels([layer_AdministrasiDesa_0,layer_BatasDesa_10]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_AdministrasiDesa_0,layer_BatasDesa_10]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_AdministrasiDesa_0,layer_BatasDesa_10]);
+        });
+        </script>
+    </body>
+</html>
